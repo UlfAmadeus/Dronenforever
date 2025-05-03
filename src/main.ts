@@ -54,8 +54,8 @@ if (path.startsWith("/banners/")) {
       return new Response("No images found in directory", { status: 500 });
     }
     
-    // Get a random banner with 60% chance
-    const randomBanner = await getRandomBanner(BANNERS_DIR, 0.6);
+    // Get a random banner with 80% chance
+    const randomBanner = await getRandomBanner(BANNERS_DIR, 0.8);
     
     // Get a random phrase
     const randomPhrase = getRandomPhrase();
@@ -66,7 +66,7 @@ if (path.startsWith("/banners/")) {
       <html lang="en">
       <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <title>Dronenforever - Retro Image Viewer</title>
         <style>
           html, body {
@@ -78,6 +78,7 @@ if (path.startsWith("/banners/")) {
           body {
             font-family: 'Courier New', monospace;
             max-width: 800px;
+            width: 100%;
             margin: 0 auto;
             padding: 15px;
             background-color: #eeeeee;
@@ -86,6 +87,7 @@ if (path.startsWith("/banners/")) {
             flex-direction: column;
             height: 100vh;
             box-sizing: border-box;
+            overflow-x: hidden; /* Prevent horizontal scroll */
           }
           h1 {
             text-align: center;
@@ -107,9 +109,11 @@ if (path.startsWith("/banners/")) {
             max-height: 50vh; /* Reduced from 70vh to make room for banner */
             width: auto;
             height: auto;
-            object-fit: contain;
+            object-fit: scale-down; /* Changed from contain to scale-down for better handling of wide images */
             margin: 10px auto;
             border: 5px solid #000080;
+            box-sizing: border-box; /* Include border in size calculations */
+            overflow: hidden; /* Hide overflow */
           }
           .reload-btn {
             background: #c0c0c0;
@@ -139,6 +143,9 @@ if (path.startsWith("/banners/")) {
             align-items: center;
             overflow: hidden;
             min-height: 0; /* Important to prevent overflow */
+            max-width: 100%;
+            width: 100%;
+            box-sizing: border-box;
           }
           footer {
             text-align: center;
@@ -159,6 +166,32 @@ if (path.startsWith("/banners/")) {
             max-height: 60px; /* Limit banner height */
             width: auto;
             height: auto;
+          }
+          
+          /* Mobile optimizations */
+          @media (max-width: 600px) {
+            body {
+              padding: 10px 5px; /* Reduced horizontal padding on mobile */
+            }
+            
+            .main-image {
+              max-height: 55vh; /* Adjusted height for mobile */
+              border-width: 3px; /* Thinner border on mobile */
+              width: 100%; /* Force width to be 100% */
+              object-fit: scale-down; /* Scale down to fit */
+            }
+            
+            .image-container {
+              width: 100%;
+              max-width: 100%;
+              padding: 0; /* No padding on mobile */
+              overflow: hidden;
+            }
+            
+            .content {
+              width: 100%;
+              overflow-x: hidden;
+            }
           }
         </style>
       </head>
