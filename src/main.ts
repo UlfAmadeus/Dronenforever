@@ -80,7 +80,7 @@ if (path.startsWith("/banners/")) {
             max-width: 100%;
             width: 800px;
             margin: 0 auto;
-            padding: 5px 15px 2px; /* Extremely reduced top/bottom padding */
+            padding: 3px 10px 3px; /* Small padding at bottom for footer */
             background-color: #eeeeee;
             color: #000080;
             display: flex;
@@ -88,6 +88,8 @@ if (path.startsWith("/banners/")) {
             height: 100vh;
             box-sizing: border-box;
             overflow-x: hidden; /* Prevent horizontal scroll */
+            overflow-y: hidden; /* Prevent vertical scroll */
+            position: relative; /* For absolute positioned elements if needed */
           }
           h1 {
             text-align: center;
@@ -97,38 +99,41 @@ if (path.startsWith("/banners/")) {
           .phrase {
             font-style: italic;
             text-align: center;
-            margin: 0 0 2px; /* Minimal bottom margin */
-            padding: 0; /* No padding */
-            font-size: 1em; /* Smaller font */
+            margin: 0 0 1px; /* Further reduced bottom margin */
+            padding: 2px 0 0 0; /* 2px top padding */
+            font-size: 0.9em; /* Even smaller font */
             color: #663399;
             flex-shrink: 0; /* Prevent phrase from being compressed */
-            line-height: 1.1; /* Tighter line height */
+            line-height: 1; /* Tightest line height */
+            height: 20px; /* Fixed minimal height */
           }
           .main-image {
             display: block;
             max-width: 100%;
-            max-height: 65vh; /* Increased significantly for more image space */
+            max-height: 73vh; /* Further increased for even more image space */
             width: auto;
             height: auto;
             object-fit: scale-down; /* Changed from contain to scale-down */
-            margin: 1px auto; /* Minimal margin */
-            border: 4px solid #000080; /* Slightly thinner border */
+            margin: 0 auto; /* No margin */
+            border: 3px solid #000080; /* Even thinner border */
             box-sizing: border-box; /* Include border in size calculations */
             overflow: hidden; /* Hide overflow */
+            flex: 1; /* Take up all available space */
           }
           .reload-btn {
             background: #c0c0c0;
-            border: outset 2px #c0c0c0; /* Thinner border */
-            padding: 3px 8px; /* Smaller padding */
+            border: outset 1px #c0c0c0; /* Even thinner border */
+            padding: 2px 6px; /* Smaller padding */
             font-family: 'MS Sans Serif', sans-serif;
-            font-size: 0.9em; /* Smaller font */
+            font-size: 0.8em; /* Smaller font */
             cursor: pointer;
             display: block;
             margin: 0 auto;
+            height: 20px; /* Fixed compact height */
           }
           .button-container {
             text-align: center;
-            margin: 0; /* No margins */
+            margin: 2px 0 0 0; /* 2px top margin to create space after image */
           }
           .content {
             flex: 1 0 auto;
@@ -149,72 +154,103 @@ if (path.startsWith("/banners/")) {
             max-width: 100%;
             width: 100%;
             box-sizing: border-box;
-            padding: 0 5px; /* Add a small padding */
-            margin-bottom: 0; /* No margin at bottom */
+            padding: 0; /* Remove all padding */
+            margin: 0; /* No margins */
           }
           footer {
             text-align: center;
-            font-size: 0.7em; /* Smaller font */
-            margin-top: 0; /* No margin */
-            flex-shrink: 0;
+            font-size: 0.6em; /* Even smaller font */
+            margin: 0; /* No margins */
             padding: 0;
             line-height: 1;
+            min-height: 15px; /* Minimum height instead of fixed */
+            flex-shrink: 0; /* Prevent footer from being compressed */
+            display: block; /* Ensure it's rendered as a block */
+            visibility: visible; /* Ensure it's visible */
+            overflow: visible; /* Ensure text isn't cut */
           }
           .banner-container {
             text-align: center;
             width: 100%;
-            height: 40px; /* Even smaller height */
+            height: 35px; /* Further reduced height */
             margin: 0; /* No margins */
             flex-shrink: 0;
+            padding: 0;
           }
           .banner {
-            max-width: 100%;
-            max-height: 40px; /* Further reduced height */
-            width: auto;
+            max-width: none; /* Remove max-width constraint */
+            max-height: 35px; /* Further reduced height */
+            width: 468px; /* Standard banner width */
             height: auto;
+            margin: 0;
+            padding: 0;
           }
           
-          /* Mobile optimizations */
-          @media (max-width: 600px) {
+          /* Medium screen optimizations */
+          @media (max-width: 600px) and (min-width: 481px) {
+            .banner {
+              width: 400px; /* Mid-size width */
+            }
+          }
+          
+          /* Small mobile optimizations */
+          @media (max-width: 480px) {
             body {
-              padding: 2px 5px 1px; /* Minimal padding */
+              padding: 1px 3px 2px; /* Small bottom padding for footer */
             }
             
             .main-image {
-              max-height: 80vh; /* Maximized image height on mobile */
+              max-height: 85vh; /* Maximum possible image height on mobile */
               border-width: 2px; /* Even thinner border on mobile */
             }
             
             .phrase {
-              font-size: 0.9em; /* Smaller text */
-              margin: 0 0 1px; /* Minimal margin */
-              line-height: 1; /* Tight line height */
+              font-size: 0.8em; /* Smaller text */
+              margin: 0;
+              padding: 2px 0 0 0; /* Keep 2px top padding */
+              line-height: 1;
+              height: 16px; /* Minimal height */
             }
             
             .button-container {
-              margin: 0; /* No margin */
+              margin: 2px 0 0 0; /* Keep 2px margin after image */
+              height: 18px; /* Fixed minimal height */
             }
             
             .reload-btn {
-              padding: 1px 5px; /* Even smaller button */
-              font-size: 0.8em;
+              padding: 0 5px; /* Minimal padding */
+              font-size: 0.7em; /* Tiny font */
               border-width: 1px;
+              height: 18px; /* Match container height */
             }
             
             .banner-container {
-              height: 30px; /* Even smaller banner area */
+              height: 25px; /* Smallest practical banner area */
               margin: 0;
               padding: 0;
+              overflow: hidden; /* In case banner is too wide */
             }
             
             .banner {
-              max-height: 30px; /* Smaller banner */
+              max-height: 25px; /* Smaller banner */
+              width: 320px; /* Mobile banner size */
+              max-width: none;
             }
             
             footer {
-              margin-top: 0;
-              font-size: 0.6em; /* Tiny footer text */
+              margin: 0;
+              padding: 0 0 2px 0; /* Small bottom padding */
+              font-size: 0.5em; /* Minimum readable text */
               line-height: 1;
+              min-height: 12px; /* Minimal height */
+              display: block;
+              visibility: visible;
+              overflow: visible;
+            }
+            
+            p {
+              margin: 0;
+              padding: 0;
             }
           }
         </style>
