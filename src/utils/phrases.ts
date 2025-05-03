@@ -84,7 +84,19 @@ export const RANDOM_PHRASES = [
     "Jeg har tapetsert veggene med aluminiumsfolie for din sikkerhet",
     "De ser på oss gjennom hullene i veggene",
     "Når lysene er slukket, åpner de hemmelige dørene",
-    "De har bygd tunneler mellom husene våre"
+    "De har bygd tunneler mellom husene våre",
+    
+    // Ivar Aasen hallucinated quotes in Nynorsk (Sun Tzu style - violent esoteric version)
+    "I tårnet av blod ligg sanninga løynd for alle utanom dei som har sett inn i avgrunnen. - Ivar Aasen",
+    "Når øksa kysser treet, lyttar den vise til dødssongen. - Ivar Aasen",
+    "Den som fryktar skuggen av ein ravn, vil sjølv bli fortært av mørket sine tenner. - Ivar Aasen",
+    "Før sverdet drikk blodet, har det allereie smaka sjela. - Ivar Aasen",
+    "I det djupaste mørket er augo til ulven raude av hungrig lyst, berre byttet ser ingenting. - Ivar Aasen",
+    "Dei sterkaste røtene veks i jorda gjødsla med fiendars bein. - Ivar Aasen",
+    "Ein kan ikkje fange krigens eldtunger i eit nett av ord, men ein kan danse i flammene. - Ivar Aasen",
+    "Når tanken druknar i det raude vatnet, vil slagmarka bli ditt kongerike. - Ivar Aasen",
+    "Når alle hovud har falle, vil ravnane kviskre løyndomane til dei døde. - Ivar Aasen",
+    "Den som kan lese i innvollane til ein fallen fiende, kjenner vegen til siger før slaget har byrja. - Ivar Aasen",
   ];
   
   /**
