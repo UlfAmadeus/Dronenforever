@@ -6,7 +6,7 @@ import { getRandomImage } from "./utils/image.ts";
 import { getRandomPhrase } from "./utils/phrases.ts";
 
 const PORT = 8000;
-const IMAGES_DIR = join(Deno.cwd(), "public", "images");
+const IMAGES_DIR = join(Deno.cwd(), "..", "public", "images");
 
 // Simple handler function for HTTP requests
 async function handler(req: Request): Response {
