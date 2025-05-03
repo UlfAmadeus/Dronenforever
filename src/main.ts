@@ -66,7 +66,7 @@ if (path.startsWith("/banners/")) {
       <html lang="en">
       <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <title>Dronenforever - Retro Image Viewer</title>
         <style>
           html, body {
@@ -77,15 +77,17 @@ if (path.startsWith("/banners/")) {
           }
           body {
             font-family: 'Courier New', monospace;
-            max-width: 800px;
+            max-width: 100%;
+            width: 800px;
             margin: 0 auto;
-            padding: 15px;
+            padding: 5px 15px 2px; /* Extremely reduced top/bottom padding */
             background-color: #eeeeee;
             color: #000080;
             display: flex;
             flex-direction: column;
             height: 100vh;
             box-sizing: border-box;
+            overflow-x: hidden; /* Prevent horizontal scroll */
           }
           h1 {
             text-align: center;
@@ -95,34 +97,38 @@ if (path.startsWith("/banners/")) {
           .phrase {
             font-style: italic;
             text-align: center;
-            margin: 10px 0;
-            padding-top: 5px;
-            font-size: 1.2em;
+            margin: 0 0 2px; /* Minimal bottom margin */
+            padding: 0; /* No padding */
+            font-size: 1em; /* Smaller font */
             color: #663399;
             flex-shrink: 0; /* Prevent phrase from being compressed */
+            line-height: 1.1; /* Tighter line height */
           }
           .main-image {
             display: block;
             max-width: 100%;
-            max-height: 50vh; /* Reduced from 70vh to make room for banner */
+            max-height: 65vh; /* Increased significantly for more image space */
             width: auto;
             height: auto;
-            object-fit: contain;
-            margin: 10px auto;
-            border: 5px solid #000080;
+            object-fit: scale-down; /* Changed from contain to scale-down */
+            margin: 1px auto; /* Minimal margin */
+            border: 4px solid #000080; /* Slightly thinner border */
+            box-sizing: border-box; /* Include border in size calculations */
+            overflow: hidden; /* Hide overflow */
           }
           .reload-btn {
             background: #c0c0c0;
-            border: outset 3px #c0c0c0;
-            padding: 5px 10px;
+            border: outset 2px #c0c0c0; /* Thinner border */
+            padding: 3px 8px; /* Smaller padding */
             font-family: 'MS Sans Serif', sans-serif;
+            font-size: 0.9em; /* Smaller font */
             cursor: pointer;
             display: block;
             margin: 0 auto;
           }
           .button-container {
             text-align: center;
-            margin: 10px 0;
+            margin: 0; /* No margins */
           }
           .content {
             flex: 1 0 auto;
@@ -130,6 +136,7 @@ if (path.startsWith("/banners/")) {
             flex-direction: column;
             overflow: hidden;
             min-height: 0; /* Important for flexbox child to not overflow */
+            margin-bottom: 0; /* No margin at bottom */
           }
           .image-container {
             flex: 1;
@@ -139,26 +146,76 @@ if (path.startsWith("/banners/")) {
             align-items: center;
             overflow: hidden;
             min-height: 0; /* Important to prevent overflow */
+            max-width: 100%;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0 5px; /* Add a small padding */
+            margin-bottom: 0; /* No margin at bottom */
           }
           footer {
             text-align: center;
-            font-size: 0.8em;
-            margin-top: 5px;
+            font-size: 0.7em; /* Smaller font */
+            margin-top: 0; /* No margin */
             flex-shrink: 0;
+            padding: 0;
+            line-height: 1;
           }
           .banner-container {
             text-align: center;
             width: 100%;
-            height: 60px; /* Fixed height for banner container */
-            margin-top: 5px;
-            margin-bottom: 5px;
+            height: 40px; /* Even smaller height */
+            margin: 0; /* No margins */
             flex-shrink: 0;
           }
           .banner {
             max-width: 100%;
-            max-height: 60px; /* Limit banner height */
+            max-height: 40px; /* Further reduced height */
             width: auto;
             height: auto;
+          }
+          
+          /* Mobile optimizations */
+          @media (max-width: 600px) {
+            body {
+              padding: 2px 5px 1px; /* Minimal padding */
+            }
+            
+            .main-image {
+              max-height: 80vh; /* Maximized image height on mobile */
+              border-width: 2px; /* Even thinner border on mobile */
+            }
+            
+            .phrase {
+              font-size: 0.9em; /* Smaller text */
+              margin: 0 0 1px; /* Minimal margin */
+              line-height: 1; /* Tight line height */
+            }
+            
+            .button-container {
+              margin: 0; /* No margin */
+            }
+            
+            .reload-btn {
+              padding: 1px 5px; /* Even smaller button */
+              font-size: 0.8em;
+              border-width: 1px;
+            }
+            
+            .banner-container {
+              height: 30px; /* Even smaller banner area */
+              margin: 0;
+              padding: 0;
+            }
+            
+            .banner {
+              max-height: 30px; /* Smaller banner */
+            }
+            
+            footer {
+              margin-top: 0;
+              font-size: 0.6em; /* Tiny footer text */
+              line-height: 1;
+            }
           }
         </style>
       </head>
