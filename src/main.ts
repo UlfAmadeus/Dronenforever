@@ -55,7 +55,7 @@ if (path.startsWith("/banners/")) {
     }
     
     // Get a random banner with 60% chance
-    const randomBanner = await getRandomBanner(BANNERS_DIR, 0.6);
+    const randomBanner = await getRandomBanner(BANNERS_DIR, 0.8);
     
     // Get a random phrase
     const randomPhrase = getRandomPhrase();
